@@ -1,0 +1,102 @@
+{
+  "name": "electron-test",
+  "description": "electron-test",
+  "version": "1.0.1",
+  "private": false,
+  "main": "public/electron.js",
+  "homepage": ".",
+  "scripts": {
+    "start": "react-scripts start",
+    "electron": "electron .",
+    "electron:window": "SET ELECTRON_START_URL=http://localhost:3000 && yarn electron",
+    "electron:xos": "ELECTRON_START_URL=http://localhost:3000 yarn electron",
+    "prebuild": "react-scripts test --watchAll=false",
+    "build": "react-scripts build",
+    "deploy:xos": "electron-builder --mac",
+    "deploy:win32": "electron-builder --win --ia32",
+    "deploy:win64": "electron-builder --win --x64",
+    "deploy:win": "yarn deploy:win32 && yarn deploy:win64",
+    "test": "react-scripts test"
+  },
+  "build": {
+    "productName": "Electron test",
+    "appId": "com.tensatsu.electron",
+    "asar": true,
+    "mac": {
+      "target": [
+        "default"
+      ],
+      "icon": "build/icons/among_us.ico"
+    },
+    "dmg": {
+      "title": "tensatsu",
+      "icon": "build/icons/among_us.ico"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icons/among_us.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true,
+      "perMachine": true,
+      "language": 1042,
+      "installerIcon": "build/icons/among_us.ico",
+      "shortcutName": "ElectronTest",
+      "artifactName": "ElectronTest-${version}.${ext}",
+      "uninstallDisplayName": "ElectronTest"
+    },
+    "directories": {
+      "buildResources": "./build/",
+      "output": "./dist/"
+    }
+  },
+  "dependencies": {
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/styled-components": "^5.1.7",
+    "electron-is-dev": "^2.0.0",
+    "electron-log": "^4.4.8",
+    "electron-updater": "^5.2.1",
+    "immer": "^8.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet-async": "^1.0.6",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.2.1",
+    "typescript": "^4.1.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "electron": "^20.1.0",
+    "electron-builder": "^23.3.3",
+    "react-scripts": "4.0.1"
+  },
+  "proxy": "http://localhost:5000"
+}
